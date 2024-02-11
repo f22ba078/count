@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        #counter {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        #result {
+            font-size: 18px;
+            margin: 10px;
+        }
+        
+    </style>
+    <script>
+        let counterValue = 0;
+
+        function updateCounter() {
+            document.getElementById("counter").innerText = counterValue;
+        }
+
+        function increment() {
+            counterValue++;
+            updateCounter();
+        }
+
+        function decrement() {
+            counterValue--;
+            updateCounter();
+        }
+
+        function updateResult() {
+            var selectedValue = document.getElementById("choices").value;
+            document.getElementById("result").innerText = "選択された選択肢: " + selectedValue;
+        }
+
+    </script>
+</head>
+<body>
+
+    <button onclick="decrement()">←</button>
+    <span id="counter">0</span>
+    <button onclick="increment()">→</button>
+
+    <label for="choices">選択肢:</label>
+    <select id="choices" onchange="updateResult()">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+    </select>
+
+</body>
+</html>
