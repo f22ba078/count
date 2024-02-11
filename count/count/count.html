@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            flex-direction: column;
+            margin: 0;
+        }
+
+        button {
+            color: rgb(248, 250, 250);
+            background-color: black;
+        }
+
+        .daturin {
+            font-size: 100%;
+            text-align: center;
+        }
+
+        #counter {
+            font-size: 200%;
+            margin: 5%;
+        }
+
+        #result {
+            font-size: 200%;
+            margin: 5%;
+        }
+
+        #course {
+            font-size: 200%;
+            margin: 5%;
+        }
+
+        #choices {
+            font-size: 200%; /* ドロップダウンのテキストの大きさを調整 */
+        }
+
+        #cauce {
+            font-size: 200%;
+        }
+
+    </style>
+    <script>
+        // カウンターの初期値
+        let counterValue = 0;
+        let limit = 0;
+        let course = "";
+
+        // カウンターを更新する関数
+        function updateCounter() {
+            document.getElementById("counter").innerText = counterValue;
+        }
+
+        function updateLimit() {
+            document.getElementById("limit").innerText = limit;
+        }
+
+        // カウンターを増やす関数
+        function increment() {
+            counterValue++;
+            updateCounter();
+        }
+
+        // カウンターを減らす関数
+        function decrement() {
+            if (0 < counterValue) {
+                counterValue--;
+            }
+            
+            updateCounter();
+        }
+
+        // 選択肢が変更されたときに呼び出される関数
+        function updateResult() {
+            // 選択された選択肢の値を取得
+            var selectedValue = document.getElementById("choices").value;
+
+            // 選択された選択肢を表示
+            document.getElementById("result").innerText = "制限時間: " + limit;
+            var courseElement = document.getElementById("course").innerText = "コースの色: " + course;
+
+            // 選択された値によってカウンターの値を設定
+            switch(selectedValue) {
+                case 'A':
+                    limit = 10;
+                    course = "赤";
+
+                    break;
+                case 'B':
+                    limit = 20;
+                    course = "青";
+                    break;
+                case 'C':
+                    limit = 30;
+                    course = "黄色";
+                    break;
+                case 'D':
+                    limit = 40;
+                    course = "オレンジ色";
+                    break;
+                default:
+                    limit = 0;
+                    course = "";
+            }
+
+            document.getElementById("result").innerText = "制限時間: " + limit + "分";
+            document.getElementById("course").innerText = "コースの色: " + course ;
+
+        }
+
+        // 画面がロードされたときに呼び出される関数
+        window.onload = function() {
+            // 初期化処理などをここに追加
+            updateResult();
+        };
+
+    </script>
+</head>
+<body>
+
+    <!-- ボタンとカウンターの表示 -->
+    <div class="daturin">
+        <h1>脱輪回数</h1>
+        <button onclick="decrement()">◀</button>
+        <span id="counter">0</span>
+        <button onclick="increment()">▶</button>
+    </div>
+    
+    <br>
+    <br>
+    <div class="daturin">
+        <!-- 選択肢のドロップダウンと結果表示 -->
+        <label id="cauce" for="choices">コース:</label>
+        <select id="choices" onchange="updateResult()">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+        <p id="result">制限時間:</p>
+        <p id="course">コースの色:　　　　</p>
+    </div>
+    
+
+   
+
+</body>
+</html>
