@@ -13,13 +13,15 @@
             margin: 0;
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 700;
+            touch-action: manipulation;
+            margin: 1%; /* ボタンのマージンを追加 */
         }
 
         button {
             color: rgb(0, 0, 0);
             background-color: rgb(252, 255, 255);
             font-size: 200%;
-            width: 10%;
+            width: 5%;
         }
 
         .daturin {
@@ -56,7 +58,12 @@
             margin-bottom: 5%; /* 下線の下にマージンを追加 */
         }
 
-        
+        @media screen and (max-width: 480px) {
+            /* 画面幅が480px以下の場合のスタイル */
+            button {
+                width: 30%; /* ボタンの横幅を変更 */
+            }
+        }
 
 
     </style>
