@@ -14,143 +14,80 @@
             font-weight: 700;
             touch-action: manipulation;
             margin: 1%;
-            color:#555556;
-            background-color: #fbfafa;
+            color:#080808;
+            background-color: #e0dede;
             /* ボタンのマージンを追加 */
         }
 
         h1 {
             text-align: center;
             font-size: 2em;
-            color: rgb(54, 52, 194);
+            color: rgb(25, 25, 26);
         }
 
-        .daturin {
-            font-size: 100%;
-            text-align: center;
+        .clickable-buttonA {
+            font-size: 3em;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #f83904;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 7em;
+            border-radius: 10px; /* 丸い角の半径を指定 */
         }
+        .clickable-buttonB {
+            font-size: 3em;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1a67f5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 7em;
+            border-radius: 10px; /* 丸い角の半径を指定 */
 
-        #counter {
-            font-size: 200%;
-            margin: 5%;
         }
-
-        #result {
-            font-size: 200%;
-            margin: 5%;
+        .clickable-buttonC {
+            font-size: 3em;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #f4d50a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 7em;
+            border-radius: 10px; /* 丸い角の半径を指定 */
         }
-
-        #course {
-            font-size: 200%;
-            margin: 5%;
-        }
-
-        #choices {
-            font-size: 200%;
-            color: #555556;
-        }
-
-        #cauce {
-            font-size: 200%;
-        }
-
-        #line {
-            text-decoration: underline;
-            /* 下線をつける */
-            border-bottom: 20px solid;
-            /* 下線の太さを設定 */
-            margin-bottom: 5%;
-            /* 下線の下にマージンを追加 */
-        }
-
-        #linkContainer {
-            font-size: 200%;
-            text-decoration: none;
-        }
-
-        @media screen and (max-width: 480px) {
-
-            /* 画面幅が480px以下の場合のスタイル */
-            button {
-                width: 30%;
-                /* ボタンの横幅を変更 */
-            }
+        .clickable-buttonD {
+            font-size: 3em;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #fcad03;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 7em;
+            border-radius: 10px; /* 丸い角の半径を指定 */
         }
     </style>
     <script>
-        let limit = 0;
-        let course = "";
-        let line = "";
-
-        function decrement() {
-            if (0 < counterValue) {
-                counterValue--;
-            }
-
-            updateCounter();
+       function redirectToLinkA() {
+            // ボタンがクリックされたときに指定のURLにリダイレクト
+            window.location.href = "Acourse.html"; // ここに移動したいリンクを指定
         }
-
-        function updateResult() {
-            var selectedValue = document.getElementById("choices").value;
-
-            const linkContainer = document.getElementById('linkContainer');
-            const link = document.createElement('a');
-
-            // 既存のリンクを削除
-            while (linkContainer.firstChild) {
-                linkContainer.removeChild(linkContainer.firstChild);
-            }
-
-            switch (selectedValue) {
-                case 'A':
-                    limit = 1;
-                    line = "rgb(206, 48, 5)";
-
-                    link.href = 'Acourse.html';
-                    link.textContent = 'count timer';
-                    link.style.color = 'rgb(206, 48, 5)';
-                    linkContainer.appendChild(link);
-
-                    break;
-                case 'B':
-                    limit = 2;
-                    line = "blue";
-                    
-                    link.href = 'Bcourse.html';
-                    link.textContent = 'count timer';
-                    link.style.color = 'blue';
-                    linkContainer.appendChild(link);
-
-                    break;
-                case 'C':
-                    limit = 3;
-                    line = "#e0d910";
-                    link.href = 'Ccourse.html';
-                    link.textContent = 'count timer';
-                    link.style.color = '#e0d910';
-                    linkContainer.appendChild(link);
-                    break;
-                case 'D':
-                    limit = 4;
-                    line = "orange";
-                    link.href = 'Dcourse.html';
-                    link.textContent = 'count timer';
-                    link.style.color = 'orange';
-                    linkContainer.appendChild(link);
-                    break;
-                default:
-                    limit = 0;
-                    course = "";
-            }
-
-            document.getElementById("result").innerText = "制限時間: " + limit + "分";
-            document.getElementById("line").style.color = line;
+        function redirectToLinkB() {
+            // ボタンがクリックされたときに指定のURLにリダイレクト
+            window.location.href = "Bcourse.html"; // ここに移動したいリンクを指定
         }
-
-
-        window.onload = function () {
-            updateResult();
-        };
+        function redirectToLinkC() {
+            // ボタンがクリックされたときに指定のURLにリダイレクト
+            window.location.href = "Ccourse.html"; // ここに移動したいリンクを指定
+        }
+        function redirectToLinkD() {
+            // ボタンがクリックされたときに指定のURLにリダイレクト
+            window.location.href = "Dcourse.html"; // ここに移動したいリンクを指定
+        }
     </script>
 </head>
 
@@ -158,24 +95,10 @@
 
     <br>
     <h1>][ COURSE SELECT ][</h1>
-    <div class="daturin">
-        <br><br>
-        <label id="cauce" for="choices">コース:</label>
-
-        <select id="choices" onchange="updateResult()">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-        </select>
-        <br><br>
-        <p id="result">制限時間:</p>
-        <br>
-        <p id="course">コースカラー</p>
-        <p id="line"></p>
-        <div id="linkContainer"></div>
-
-    </div>
+    <button class="clickable-buttonA" onclick="redirectToLinkA()">A</button>
+    <button class="clickable-buttonB" onclick="redirectToLinkB()">B</button>
+    <button class="clickable-buttonC" onclick="redirectToLinkC()">C</button>
+    <button class="clickable-buttonD" onclick="redirectToLinkD()">D</button>
 </body>
 
 </html>
