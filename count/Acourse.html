@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Counter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <style>
+        body {
+            flex-direction: column;
+            margin: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            touch-action: manipulation;
+            margin: 1%;
+            /* ボタンのマージンを追加 */
+        }
+
+        #trg {
+            color: rgb(0, 0, 0);
+            background-color: rgb(252, 255, 255);
+            font-size: 200%;
+            width: 10%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .daturin {
+            font-size: 100%;
+            text-align: center;
+        }
+
+        #counter {
+            font-size: 200%;
+            margin: 5%;
+        }
+
+        #stopwatch {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #startBtn,
+        #stopBtn,
+        #resetBtn {
+            color: rgb(0, 0, 0);
+            background-color: rgb(252, 255, 255);
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #back {
+            color: rgb(0, 0, 0);
+            background-color: rgb(252, 255, 255);
+            font-size: 200%;
+        }
+
+
+        @media screen and (max-width: 480px) {
+
+            /* 画面幅が480px以下の場合のスタイル */
+            button {
+                width: 30%;
+                /* ボタンの横幅を変更 */
+            }
+        }
+    </style>
+    <script>
+        let counterValue = 0;
+
+        let stopwatch;
+        let elapsedTime = 0;
+        let isRunning = false;
+
+
+        function updateCounter() {
+            document.getElementById("counter").innerText = counterValue;
+        }
+
+        function updateLimit() {
+            document.getElementById("limit").innerText = limit;
+        }
+
+        function increment() {
+            counterValue++;
+            updateCounter();
+        }
+
+        function decrement() {
+            if (0 < counterValue) {
+                counterValue--;
+            }
+
+            updateCounter();
+        }
+
+        function startStopwatch() {
+            if (!isRunning) {
+                isRunning = true;
+                stopwatch = setInterval(updateStopwatch, 1000);
+            }
+        }
+
+        function stopStopwatch() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(stopwatch);
+            }
+        }
+
+        function resetStopwatch() {
+            stopStopwatch();
+            elapsedTime = 0;
+            updateStopwatch();
+        }
+
+        function updateStopwatch() {
+            const minutes = Math.floor((elapsedTime % 3600) / 60);
+            const seconds = elapsedTime % 60;
+
+            document.getElementById('stopwatch').innerText = `${formatTime(minutes)}:${formatTime(seconds)}`;
+            elapsedTime++;
+        }
+
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
+        function goBack() {
+            // ボタンを押したら指定したリンク先に戻る
+            window.location.href = 'course.html';  // 戻りたいページのURLを指定
+        }
+
+        window.onload = function () {
+            updateResult();
+        };
+    </script>
+</head>
+
+<body>
+    <h1>A</h1>
+    <div class="daturin">
+        <h1>脱輪回数</h1>
+        <button id="trg" onclick="decrement()">◀</button>
+        <span id="counter">0</span>
+        <button id="trg" onclick="increment()">▶</button>
+        <br><br><br><br>
+        <h1>制限時間: 1分</h1>
+        <div id="stopwatch">00:00</div>
+        <button id="startBtn" onclick="startStopwatch()">start</button>
+        <button id="stopBtn" onclick="stopStopwatch()">stop</button>
+        <button id="resetBtn" onclick="resetStopwatch()">reset</button>
+
+        <br><br><br><br>
+        <button id="back" onclick="goBack()">戻る</button>
+    </div>
+</body>
+
+</html>

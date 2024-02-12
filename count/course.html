@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Counter</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
     <style>
         body {
@@ -14,14 +13,15 @@
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 700;
             touch-action: manipulation;
-            margin: 1%; /* ボタンのマージンを追加 */
+            margin: 1%;
+            color:#555556;
+            background-color: #fbfafa;
+            /* ボタンのマージンを追加 */
         }
 
-        button {
-            color: rgb(0, 0, 0);
-            background-color: rgb(252, 255, 255);
-            font-size: 200%;
-            width: 10%;
+        h1 {
+            text-align: center;
+            font-size: 300%;
         }
 
         .daturin {
@@ -46,7 +46,7 @@
 
         #choices {
             font-size: 200%;
-            color: black;
+            color: #555556;
         }
 
         #cauce {
@@ -54,38 +54,32 @@
         }
 
         #line {
-            text-decoration: underline; /* 下線をつける */
-            border-bottom: 20px solid; /* 下線の太さを設定 */
-            margin-bottom: 5%; /* 下線の下にマージンを追加 */
+            text-decoration: underline;
+            /* 下線をつける */
+            border-bottom: 20px solid;
+            /* 下線の太さを設定 */
+            margin-bottom: 5%;
+            /* 下線の下にマージンを追加 */
+        }
+
+        #linkContainer {
+            font-size: 200%;
+            text-decoration: none;
         }
 
         @media screen and (max-width: 480px) {
+
             /* 画面幅が480px以下の場合のスタイル */
             button {
-                width: 30%; /* ボタンの横幅を変更 */
+                width: 30%;
+                /* ボタンの横幅を変更 */
             }
         }
-
-
     </style>
     <script>
-        let counterValue = 0;
         let limit = 0;
         let course = "";
         let line = "";
-
-        function updateCounter() {
-            document.getElementById("counter").innerText = counterValue;
-        }
-
-        function updateLimit() {
-            document.getElementById("limit").innerText = limit;
-        }
-
-        function increment() {
-            counterValue++;
-            updateCounter();
-        }
 
         function decrement() {
             if (0 < counterValue) {
@@ -98,22 +92,50 @@
         function updateResult() {
             var selectedValue = document.getElementById("choices").value;
 
+            const linkContainer = document.getElementById('linkContainer');
+            const link = document.createElement('a');
+
+            // 既存のリンクを削除
+            while (linkContainer.firstChild) {
+                linkContainer.removeChild(linkContainer.firstChild);
+            }
+
             switch (selectedValue) {
                 case 'A':
-                    limit = 10;
-                    line = "red";
+                    limit = 1;
+                    line = "rgb(206, 48, 5)";
+
+                    link.href = 'Acourse.html';
+                    link.textContent = 'count timer';
+                    link.style.color = 'rgb(206, 48, 5)';
+                    linkContainer.appendChild(link);
+
                     break;
                 case 'B':
-                    limit = 20;
+                    limit = 2;
                     line = "blue";
+                    
+                    link.href = 'Bcourse.html';
+                    link.textContent = 'count timer';
+                    link.style.color = 'blue';
+                    linkContainer.appendChild(link);
+
                     break;
                 case 'C':
-                    limit = 30;
-                    line = "yellow";
+                    limit = 3;
+                    line = "#e0d910";
+                    link.href = 'Ccourse.html';
+                    link.textContent = 'count timer';
+                    link.style.color = '#e0d910';
+                    linkContainer.appendChild(link);
                     break;
                 case 'D':
-                    limit = 40;
+                    limit = 4;
                     line = "orange";
+                    link.href = 'Dcourse.html';
+                    link.textContent = 'count timer';
+                    link.style.color = 'orange';
+                    linkContainer.appendChild(link);
                     break;
                 default:
                     limit = 0;
@@ -121,7 +143,7 @@
             }
 
             document.getElementById("result").innerText = "制限時間: " + limit + "分";
-            document.getElementById("line").style.color = line; 
+            document.getElementById("line").style.color = line;
         }
 
 
@@ -132,15 +154,9 @@
 </head>
 
 <body>
-    <div class="daturin">
-        <h1>脱輪回数</h1>
-        <button onclick="decrement()">◀</button>
-        <span id="counter">0</span>
-        <button onclick="increment()">▶</button>
-    </div>
 
     <br>
-    <br>
+    <h1>][][ コース選択 ][][</h1>
     <div class="daturin">
         <label id="cauce" for="choices">コース:</label>
         <select id="choices" onchange="updateResult()">
@@ -152,6 +168,7 @@
         <p id="result">制限時間:</p>
         <p id="course">コースカラー</p>
         <p id="line"></p>
+        <div id="linkContainer"></div>
 
     </div>
 </body>
