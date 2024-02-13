@@ -75,12 +75,14 @@
             padding: 3%;
             font-size: 100%;
             cursor: pointer;
+            border: solid 2px #fafafb;
         }
 
         #back {
             color: rgb(0, 0, 0);
             background-color: rgb(252, 255, 255);
             font-size: 150%;
+            border: solid 2px #fafafb;
         }
 
         .btn-circle-border-simple {
@@ -139,7 +141,7 @@
         }
     </style>
     <script>
-        let counterValue = 0;
+        let counterValue = 100;
 
         let stopwatch;
         let elapsedTime = 0;
@@ -155,8 +157,10 @@
         }
 
         function increment() {
-            counterValue++;
-            updateCounter();
+            if(counterValue < 100){
+                counterValue++;
+                updateCounter();
+            }  
         }
 
         function decrement() {
@@ -221,7 +225,7 @@
         <br><br><br><br>
         <h1>脱輪回数</h1>
         <button id="trgL" onclick="decrement()">◀</button>
-        <span id="counter">0</span>
+        <span id="counter">100</span>
         <button id="trgR" onclick="increment()">▶</button>
         
         <br><br><br><br><br><br>
