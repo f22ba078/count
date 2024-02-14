@@ -25,11 +25,12 @@
             width: 10%;
             text-align: center;
             position: relative;
-            left: 0.1em; /* ボタンを右に10px移動 */
+            left: 0.1em;
+            /* ボタンを右に10px移動 */
             border-radius: 50%;
-            line-height:3em;
-            width:3em;
-            bottom:0.5em;
+            line-height: 3em;
+            width: 3em;
+            bottom: 0.5em;
         }
 
         #trgR {
@@ -39,17 +40,18 @@
             width: 10%;
             text-align: center;
             position: relative;
-            right: 0.1em; /* ボタンを右に10px移動 */
+            right: 0.1em;
+            /* ボタンを右に10px移動 */
             border-radius: 50%;
-            line-height:3em;
-            width:3em;
-            bottom:0.5em;
+            line-height: 3em;
+            width: 3em;
+            bottom: 0.5em;
         }
 
-        #B {
+        #title {
+            font-size: 300%;
             text-align: center;
-            background-color: #1a67f5;
-            color: white;
+            color: rgb(0, 0, 0);
         }
 
         .daturin {
@@ -58,7 +60,7 @@
         }
 
         #counter {
-            font-size: 200%;
+            font-size: 500%;
             margin: 5%;
         }
 
@@ -83,11 +85,8 @@
             border: solid 2px #ffffff;
         }
 
-        #back {
-            color: rgb(0, 0, 0);
-            background-color: rgb(252, 255, 255);
-            font-size: 150%;
-            border: solid 2px #ffffff;
+        #txt {
+            font-size: 100%;
         }
 
         .btn-circle-border-simple {
@@ -118,7 +117,7 @@
             overflow: hidden;
             font-weight: bold;
             transition: .4s;
-            right:100px;
+            right: 100px;
             font-size: 0.8em;
         }
 
@@ -133,7 +132,17 @@
             display: inline-block;
         }
 
-        
+        /* チェックボックスのスタイル */
+        #myCheckbox {
+            width: 1em;
+            /* 幅 */
+            height: 1em;
+            /* 高さ */
+            transform: scale(1.5);
+            /* 大きさを変更 */
+        }
+
+
 
 
         @media screen and (max-width: 480px) {
@@ -156,65 +165,22 @@
 
 
         function updateCounter() {
-            document.getElementById("counter").innerText = counterValue;
-            document.getElementById("score").innerText = scoreValue * kes;
+            document.getElementById("counter").innerText = counterValue + "組";
         }
 
-        function updateLimit() {
-            document.getElementById("limit").innerText = limit;
-        }
 
         function increment() {
-            if(counterValue < 100){
+            if (counterValue < 100) {
                 counterValue++;
-                scoreValue--;
                 updateCounter();
-            }  
+            }
         }
 
         function decrement() {
             if (0 < counterValue) {
                 counterValue--;
-                scoreValue++;
                 updateCounter();
             }
-        }
-
-        function startStopwatch() {
-            if (!isRunning) {
-                isRunning = true;
-                stopwatch = setInterval(updateStopwatch, 1000);
-            }
-        }
-
-        function stopStopwatch() {
-            if (isRunning) {
-                isRunning = false;
-                clearInterval(stopwatch);
-            }
-        }
-
-        function resetStopwatch() {
-            stopStopwatch();
-            elapsedTime = 0;
-            updateStopwatch();
-        }
-
-        function updateStopwatch() {
-            const minutes = Math.floor((elapsedTime % 3600) / 60);
-            const seconds = elapsedTime % 60;
-
-            document.getElementById('stopwatch').innerText = `${formatTime(minutes)}:${formatTime(seconds)}`;
-            elapsedTime++;
-        }
-
-        function formatTime(time) {
-            return time < 10 ? `0${time}` : time;
-        }
-
-        function goBack() {
-            // ボタンを押したら指定したリンク先に戻る
-            window.location.href = 'course.html';  // 戻りたいページのURLを指定
         }
 
         window.onload = function () {
@@ -224,25 +190,18 @@
 </head>
 
 <body>
-    <h1 id="B">B</h1>
+    <h1 id="title">待ち組数</h1>
     <div class="daturin">
-        <h1>制限時間: 4分</h1>
-        <div id="stopwatch">00:00</div>
-        <button id="startBtn" onclick="startStopwatch()"><a href="#" class="btn-circle-border-simple">START</a></button>
-        <button id="stopBtn" onclick="stopStopwatch()"><a href="#" class="btn-circle-border-simple">STOP</a></button>
-        <button id="resetBtn" onclick="resetStopwatch()"><a href="#" class="btn-circle-border-simple">RESET</a></button>
-        <br><br><br><br>
-        <h1>脱輪回数</h1>
+        <span id="counter">0組</span>
+        <br>
         <button id="trgL" onclick="decrement()">◀</button>
-        <span id="counter">0</span>
-        <button id="trgR" onclick="increment()">▶</button>
-        <br><br>
-        <h1>score</h1>
-        <br><span id="score"></span>
-        <br><br><br><br><br><br>
-        <button id="back" onclick="goBack()"><a href="#" class="btn-circle-border-simple1">◀BACK</a></button>
+        　　<button id="trgR" onclick="increment()">▶</button>
+        <br>
+        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"> 10:00-</input>
+        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"> 12:00-</input>
+        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"></input>
+        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"></input>
 
-        
     </div>
 </body>
 

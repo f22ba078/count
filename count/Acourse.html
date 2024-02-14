@@ -62,6 +62,11 @@
             margin: 5%;
         }
 
+        #score {
+            font-size: 200%;
+            margin: 5%;
+        }
+
         #stopwatch {
             font-size: 2em;
             margin-bottom: 20px;
@@ -71,18 +76,18 @@
         #stopBtn,
         #resetBtn {
             color: rgb(0, 0, 0);
-            background-color: rgb(252, 255, 255);
+            background-color: rgb(255, 255, 255);
             padding: 3%;
             font-size: 100%;
             cursor: pointer;
-            border: solid 2px #fafafb;
+            border: solid 2px #ffffff;
         }
 
         #back {
             color: rgb(0, 0, 0);
             background-color: rgb(252, 255, 255);
             font-size: 150%;
-            border: solid 2px #fafafb;
+            border: solid 2px #ffffff;
         }
 
         .btn-circle-border-simple {
@@ -141,15 +146,18 @@
         }
     </style>
     <script>
-        let counterValue = 100;
+        let counterValue = 0;
+        let scoreValue = 100;
 
         let stopwatch;
         let elapsedTime = 0;
         let isRunning = false;
+        let kes = 4.5;
 
 
         function updateCounter() {
             document.getElementById("counter").innerText = counterValue;
+            document.getElementById("score").innerText = scoreValue * kes;
         }
 
         function updateLimit() {
@@ -159,6 +167,7 @@
         function increment() {
             if(counterValue < 100){
                 counterValue++;
+                scoreValue--;
                 updateCounter();
             }  
         }
@@ -166,9 +175,9 @@
         function decrement() {
             if (0 < counterValue) {
                 counterValue--;
+                scoreValue++;
+                updateCounter();
             }
-
-            updateCounter();
         }
 
         function startStopwatch() {
@@ -225,11 +234,15 @@
         <br><br><br><br>
         <h1>脱輪回数</h1>
         <button id="trgL" onclick="decrement()">◀</button>
-        <span id="counter">100</span>
+        <span id="counter">0</span>
         <button id="trgR" onclick="increment()">▶</button>
-        
+        <br><br>
+        <h1>score</h1>
+        <br><span id="score"></span>
         <br><br><br><br><br><br>
         <button id="back" onclick="goBack()"><a href="#" class="btn-circle-border-simple1">◀BACK</a></button>
+
+        
     </div>
 </body>
 
