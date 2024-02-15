@@ -152,12 +152,12 @@
         let stopwatch;
         let elapsedTime = 0;
         let isRunning = false;
-        let kes = 4.5;
+        let kes = 1;
 
 
         function updateCounter() {
             document.getElementById("counter").innerText = counterValue;
-            document.getElementById("score").innerText = scoreValue * kes;
+            document.getElementById("score").innerText = Math.floor(100 - (counterValue * kes));
         }
 
         function updateLimit() {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Counter</title>
+    <title>待ち時間</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
     <style>
@@ -54,6 +54,11 @@
             color: rgb(0, 0, 0);
         }
 
+        #wait {
+            font-size: 300%;
+            text-align: center;
+            color: rgb(0, 0, 0);
+        }
         .daturin {
             font-size: 100%;
             text-align: center;
@@ -142,6 +147,10 @@
             /* 大きさを変更 */
         }
 
+        #txtt{
+            width: 2em;
+        }
+
 
 
 
@@ -161,11 +170,13 @@
         let stopwatch;
         let elapsedTime = 0;
         let isRunning = false;
+        let waits = 7;
         let kes = 1;
 
 
         function updateCounter() {
             document.getElementById("counter").innerText = counterValue + "組";
+            document.getElementById("wait").innerText = counterValue * waits + "分";
         }
 
 
@@ -186,6 +197,8 @@
         window.onload = function () {
             updateResult();
         };
+
+
     </script>
 </head>
 
@@ -196,12 +209,31 @@
         <br>
         <button id="trgL" onclick="decrement()">◀</button>
         　　<button id="trgR" onclick="increment()">▶</button>
-        <br>
-        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"> 10:00-</input>
-        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"> 12:00-</input>
-        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"></input>
-        <br><input type="checkbox" id="myCheckbox" name="myCheckbox"></input>
+        <h1 id="title">推定待ち時間</h1>
+        <span id="wait">0分</span>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <h1>予約管理</h1>
 
+        <script>
+            let txtt = "txtt";
+            function formatTime(hour, minute) {
+                return ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2);
+            }
+        
+            for (let hour = 10; hour <= 17; hour++) {
+                for (let minute = 0; minute < 60; minute += 10) {
+                    const startTime = formatTime(hour, minute);
+                    const endTime = formatTime(hour, minute + 10);
+                    const id = "myCheckbox" + startTime + endTime;
+        
+                    document.write(`
+                    <input type="checkbox" id="${id}" name="myCheckbox">${startTime} - ${endTime}
+                    <input type="text"><input id="${txtt}" type="text"><br>
+                `);
+                }
+            }
+        </script>
+        
     </div>
 </body>
 
